@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Weekend Todo Assignment</title>
+  </head>
+  <body ng-controller="MainController as main">
+    <h1>Todo!</h1>
+    <input type="text" ng-model="main.todoText" />
+    <button ng-click="main.addTodo()">Add Todo</button>
+    <ul>
+      <li ng-repeat="todo in main.todos">
+        {{ todo }}
+      </li>
+    </ul>
+  </body>
+</html>
