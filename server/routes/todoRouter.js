@@ -36,6 +36,7 @@ router.get('/', function(request, response){
       console.log(err);
       response.sendStatus(500);
     } else {
+      // ORDER BY complete brings unfinished todos to the top
       var query = client.query('SELECT * FROM todos ORDER BY complete');
       todoResults = [];
 
@@ -64,7 +65,7 @@ router.delete('/delete/:id', function(request, response){
       console.log(err);
       sendStatus(500);
     } else {
-      var query = client.query('DELETE FROM todos WHERE id = ' + id);
+      var query = client.query('DELETE FROM todos WHERE id = ($1)', [id]);
 
       query.on('end', function(){
         done();
@@ -87,7 +88,7 @@ router.put('/complete/:id', function(request, response){
       console.log(err);
       sendStatus(500);
     } else {
-      var query = client.query('UPDATE todos SET complete = true WHERE id = ' + id);
+      var query = client.query('UPDATE todos SET complete = true WHERE id = ($1)', [id]);
 
       query.on('end', function(){
         done();

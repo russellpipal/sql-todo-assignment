@@ -8,12 +8,25 @@
 
 header {
   margin-bottom: 10px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
 }
 
 .completedWell {
-  background-color: #888888;
+  background-color: #C0C0C0;
 }
 
 .well {
-  box-shadow: 1px 1px 3px #888888;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.moreButtons {
+  text-align: center;
 }

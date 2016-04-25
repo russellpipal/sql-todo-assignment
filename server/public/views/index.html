@@ -24,7 +24,7 @@
         <button ng-click="main.showDelete(aTodo)" class="btn btn-warning">Delete</button>
 
         <br />
-        <div ng-show="aTodo.deleteShown">
+        <div class="moreButtons" ng-show="aTodo.deleteShown">
           Really delete?
           <button ng-click="main.deleteTodo(aTodo)" class="btn btn-danger">Delete</button>
           <button ng-click="main.cancelDelete(aTodo)" class="btn btn-success">Cancel</button>
