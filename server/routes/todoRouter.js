@@ -38,6 +38,7 @@ router.get('/', function(request, response){
       response.sendStatus(500);
     } else {
       var query = client.query('SELECT * FROM todos');
+      todoResults = [];
 
       query.on('row', function(row){
         todoResults.push(row);

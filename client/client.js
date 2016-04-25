@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http){
     $http.get('/todo').then(function(response){
       main.todos = [];
       main.todos = response.data;
+      console.log(response.data);
       main.todoText = '';
     });
   };

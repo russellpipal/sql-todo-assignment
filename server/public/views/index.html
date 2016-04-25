@@ -11,8 +11,10 @@
     <input type="text" ng-model="main.todoText" />
     <button ng-click="main.addTodo()">Add Todo</button>
     <ul>
-      <li ng-repeat="todo in main.todos">
-        {{ todo }}
+      <li ng-repeat="aTodo in main.todos">
+        {{ aTodo }}
+        <button ng-click="main.completeTodo(aTodo)">Complete</button>
+        <button ng-click="main.deleteTodo(aTodo)">Delete</button>
       </li>
     </ul>
   </body>
