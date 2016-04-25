@@ -4,6 +4,7 @@ app.controller('MainController', ['$http', function($http){
   var main = this;
   main.todoText = '';
   main.todos = [];
+  main.deleteShown = false;
 
   getTodos = function(){
     $http.get('/todo').then(function(response){
@@ -22,6 +23,15 @@ app.controller('MainController', ['$http', function($http){
 
   main.completeTodo = function(currentTodo){
     $http.put('/todo/complete/' + currentTodo.id).then(getTodos);
+  };
+
+  main.showDelete = function(currentTodo){
+    currentTodo.deleteShown = true;
+    console.log('delete pressed');
+  };
+
+  main.cancelDelete = function(currentTodo){
+    currentTodo.deleteShown = false;
   };
 
   getTodos();

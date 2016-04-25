@@ -1,3 +1,19 @@
-.strike {
+.completed {
   text-decoration: line-through;
+}
+
+.container {
+  max-width: 600px;
+}
+
+header {
+  margin-bottom: 10px;
+}
+
+.completedWell {
+  background-color: #888888;
+}
+
+.well {
+  box-shadow: 1px 1px 3px #888888;
 }

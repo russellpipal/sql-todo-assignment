@@ -9,17 +9,27 @@
     <link href="../styles/styles.css" rel="stylesheet" />
   </head>
   <body ng-controller="MainController as main">
-    <h1>Todo!</h1>
-    <input type="text" ng-model="main.todoText" />
-    <button ng-click="main.addTodo()">Add Todo</button>
-    <br />
+    <div class="container">
+      <header>
+        <h1>Todo!</h1>
+        <input type="text" ng-model="main.todoText" />
+        <button ng-click="main.addTodo()">Add Todo</button>
+        <br />
+      </header>
 
-    <div ng-repeat="aTodo in main.todos" class="well col-md-3 todoWell">
-      <span  ng-class="{strike: aTodo.complete}">{{ aTodo.todo }}</span>
-      <br />
-      <button ng-click="main.completeTodo(aTodo)" class="btn btn-success">Complete</button>
-      <button ng-click="main.deleteTodo(aTodo)" class="btn btn-warning">Delete</button>
+      <div ng-repeat="aTodo in main.todos" class="well" ng-class="{completedWell: aTodo.complete}">
+        <span  ng-class="{completed: aTodo.complete}">{{ aTodo.todo }}</span>
+        <br />
+        <button ng-click="main.completeTodo(aTodo)" class="btn btn-primary">Complete</button>
+        <button ng-click="main.showDelete(aTodo)" class="btn btn-warning">Delete</button>
+
+        <br />
+        <div ng-show="aTodo.deleteShown">
+          Really delete?
+          <button ng-click="main.deleteTodo(aTodo)" class="btn btn-danger">Delete</button>
+          <button ng-click="main.cancelDelete(aTodo)" class="btn btn-success">Cancel</button>
+        </div>
+      </div>
     </div>
-
   </body>
 </html>
