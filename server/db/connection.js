@@ -18,8 +18,7 @@ function initializeDB(){
       var query = client.query('CREATE TABLE IF NOT EXISTS todos (' +
       'id SERIAL PRIMARY KEY, ' +
       'todo varchar(255) NOT NULL, ' +
-      'done boolean NOT NULL, ' +
-      );
+      'complete boolean NOT NULL)');
 
       query.on('end', function(){
         console.log('Successfully ensured schema exists');

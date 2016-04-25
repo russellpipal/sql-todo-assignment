@@ -12,10 +12,10 @@ router.post('/', function(request, response){
       response.sendStatus(500);
     } else {
       var todo = request.body.todo;
-      var done = request.body.done;
+      var complete = request.body.complete;
 
-      var query = client.query('INSERT INTO todos (todo, done) VALUES ($1, $2) ' +
-                                'RETURNING todo, done', [todo, done]);
+      var query = client.query('INSERT INTO todos (todo, complete) VALUES ($1, $2) ' +
+                                'RETURNING todo, complete', [todo, complete]);
 
       query.on('end', function() {
         done();
