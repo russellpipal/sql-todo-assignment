@@ -14,8 +14,7 @@ router.post('/', function(request, response){
       var todo = request.body.todo;
       var complete = request.body.complete;
 
-      var query = client.query('INSERT INTO todos (todo, complete) VALUES ($1, $2) ' +
-                                'RETURNING todo, complete', [todo, complete]);
+      var query = client.query('INSERT INTO todos (todo, complete) VALUES ($1, $2) RETURNING todo, complete', [todo, complete]);
 
       query.on('end', function() {
         done();
@@ -37,7 +36,7 @@ router.get('/', function(request, response){
       console.log(err);
       response.sendStatus(500);
     } else {
-      var query = client.query('SELECT * FROM todos');
+      var query = client.query('SELECT * FROM todos ORDER BY complete');
       todoResults = [];
 
       query.on('row', function(row){
@@ -52,7 +51,53 @@ router.get('/', function(request, response){
       query.on('error', function(error){
         console.log('Error on get', error);
         done();
-        respone.sendStatus(500);
+        response.sendStatus(500);
+      });
+    }
+  });
+});
+
+router.delete('/delete/:id', function(request, response){
+  var id = request.params.id;
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log(err);
+      sendStatus(500);
+    } else {
+      var query = client.query('DELETE FROM todos WHERE id = ' + id);
+
+      query.on('end', function(){
+        done();
+        response.sendStatus(200);
+      });
+
+      query.on('error', function(error){
+        console.log('Error on delete', error);
+        done();
+        response.sendStatus(500);
+      });
+    }
+  });
+});
+
+router.put('/complete/:id', function(request, response){
+  var id = request.params.id;
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      console.log(err);
+      sendStatus(500);
+    } else {
+      var query = client.query('UPDATE todos SET complete = true WHERE id = ' + id);
+
+      query.on('end', function(){
+        done();
+        response.sendStatus(200);
+      });
+
+      query.on('error', function(error){
+        console.log('Error on put', error);
+        done();
+        response.sendStatus(500);
       });
     }
   });
