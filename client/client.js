@@ -27,7 +27,6 @@ app.controller('MainController', ['$http', function($http){
 
   main.showDelete = function(currentTodo){
     currentTodo.deleteShown = true;
-    console.log('delete pressed');
   };
 
   main.cancelDelete = function(currentTodo){
